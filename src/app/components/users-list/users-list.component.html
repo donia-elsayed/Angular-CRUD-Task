@@ -1,0 +1,73 @@
+<section id="users__list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <app-add-user (newUsersList)="changeList($event)"></app-add-user>
+            </div>
+            <div *ngIf="isDeleted" class="alert alert-success text-center w-25 m-auto" role="alert">
+              <p>Deleted Successfully</p>
+            </div>
+            <table class="table mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of usersList">
+                    <th scope="row">{{user.id}}</th>
+                    <td><img [src]="user?.avatar" class="img-fluid rounded-circle"alt="" [routerLink]="['singleUser',user.id]"></td>
+                    <td>{{user.first_name? user.first_name : user.name}}</td>
+                    <td>
+                      <button class="btn btn-info text-white me-3"data-bs-toggle="modal" 
+                      data-bs-target="#UpdateUser" (click)="getUserData(user.id)">Update User</button>
+                      <button class="btn btn-danger text-white" (click)="deleteUser(user)">Delete User</button>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Update User MOdel -->
+<div class="modal fade" id="UpdateUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form [formGroup]="updateUserForm" (ngSubmit)="submitUpdateUser()">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-info" id="exampleModalLabel">Update User</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div *ngIf="isUpdated" class="alert alert-success text-center" role="alert">
+            <p>Updated Successfully</p>
+         </div>
+          <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                  <div class="form-group">
+                    <label for="first_name" class="col-form-label text-info fs-5">First Name</label>
+                    <input type="text" class="form-control" id="first_name" formControlName="first_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="last_name" class="col-form-label text-info fs-5">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" formControlName="last_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="col-form-label text-info fs-5">Email</label>
+                    <input type="text" class="form-control" formControlName="email" id="email">
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info text-white" [disabled]="!updateUserForm.valid || !updateUserForm.touched">Update User</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>

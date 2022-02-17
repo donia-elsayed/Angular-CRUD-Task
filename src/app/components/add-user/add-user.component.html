@@ -1,0 +1,87 @@
+<!-- <div class="container">
+    <div class="row justify-content-center align-items-center my-5">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center text-info">Add User</h3>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="isAdded" class="alert alert-success" role="alert">
+                       <p>User Added Successfully</p>
+                    </div>
+                    <form [formGroup]="addUserForm" (ngSubmit)="submitAddUser(addUserForm)">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label text-info fs-4">Name</label>
+                            <input type="text" class="form-control" 
+                            id="name"
+                            formControlName="name">
+                        </div>
+                        <div *ngIf="addUserForm.controls.name.touched && !addUserForm.controls.name.valid">
+                            <small class="text-danger" *ngIf="addUserForm.controls.name.errors?.required">This Name Field is Required </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="job" class="col-form-label text-info fs-4">Job</label>
+                            <input type="text" class="form-control"
+                            id="job"
+                            formControlName="job">
+                        </div>
+                        <div *ngIf="addUserForm.controls.job.touched && !addUserForm.controls.job.valid">
+                            <small class="text-danger" *ngIf="addUserForm.controls.job.errors?.required">This Job Field is Required </small>
+                        </div>
+                        <button type="submit" class="btn btn-info my-4 
+                        d-block m-auto btn-lg text-white"
+                        [disabled]="!addUserForm.valid">Add User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<button class="btn btn-success d-block text-white my-3 float-end"
+    data-bs-toggle="modal" data-bs-target="#AddUser">Add User</button>
+
+<div class="modal fade" id="AddUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="addUserForm" (ngSubmit)="submitAddUser(addUserForm)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-info" id="exampleModalLabel">Add User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div *ngIf="isAdded" class="alert alert-success text-center" role="alert">
+                <p>Added Successfully</p>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <!-- <div class="form-group">
+                                <label for="name" class="col-form-label text-info fs-4">Name</label>
+                                <input type="text" class="form-control" id="name" formControlName="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="job" class="col-form-label text-info fs-4">Job</label>
+                                <input type="text" class="form-control" id="job" formControlName="job">
+                            </div> -->
+                            <div class="form-group">
+                                <label for="first_name" class="col-form-label text-info fs-4">First Name</label>
+                                <input type="text" class="form-control" id="first_name" formControlName="first_name">
+                              </div>
+                              <div class="form-group">
+                                <label for="last_name" class="col-form-label text-info fs-4">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" formControlName="last_name">
+                              </div>
+                              <div class="form-group">
+                                <label for="email" class="col-form-label text-info fs-4">Email</label>
+                                <input type="text" class="form-control" formControlName="email" id="email">
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white" [disabled]="!addUserForm.valid">Add User</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>  
+            </div>
+        </form>
+    </div>
+</div>

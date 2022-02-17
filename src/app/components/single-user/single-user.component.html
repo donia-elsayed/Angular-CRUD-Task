@@ -1,0 +1,11 @@
+<div class="container my-5">
+    <div class="card w-25 m-auto">
+        <img  class="card-img-top img-fluid" alt="user" [src]="singleUser?.avatar">
+        <div class="card-body text-center">
+            <h5 class="card-title">First Name: {{singleUser?.first_name}}</h5>
+            <h5>Last Name: {{singleUser?.last_name}}</h5>
+            <p class="card-text">Email: {{singleUser?.email}}</p>
+            <button class="btn btn-info rounded-circle text-white" (click)="backToAllUsersPage()">Back</button>
+        </div>
+    </div>
+</div>
